@@ -1,7 +1,8 @@
+import linking from "@/routes/linking";
 import { redirect } from "next/navigation";
 
 const Catalog = async () => {
-  redirect(`/catalog/hoodie`);
+  redirect(linking.hoodie.index);
 };
 
 export default Catalog;

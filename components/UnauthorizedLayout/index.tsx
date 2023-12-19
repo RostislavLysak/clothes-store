@@ -1,42 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import linking from "@/routes/linking";
+import useScrollHeader from "@/hooks";
 
-const navlinks = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Catalog",
-    href: "/catalog",
-  },
-];
+export default function UnauthorizedhLayout({
+  children,
+}: React.PropsWithChildren) {
+    const { show } = useScrollHeader();
 
-export default function Layout({ children }: React.PropsWithChildren) {
-  const [show, setShow] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  const controlNavbar = () => {
-    if (window.scrollY > lastScrollY) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
-
-    setLastScrollY(window.scrollY);
-  };
+  const { status } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
-    window.addEventListener("scroll", controlNavbar);
+    if (status === "authenticated") {
+      router.replace(linking.dashboard.root);
+    }
+  }, [status]);
 
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, [lastScrollY]);
-  
+  if (status === "loading") {
+    return "Loading...";
+  }
+
   return (
     <>
       <header
@@ -52,7 +40,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
           height={24}
           priority
         />
-        {navlinks.map((item) => (
+        {/* {navlinks.map((item) => (
           <Link
             key={item.title}
             href={item.href}
@@ -60,7 +48,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
           >
             {item.title}
           </Link>
-        ))}
+        ))} */}
       </header>
       <main className="mt-32">{children}</main>
       {/* <footer className="border-t p-12 text-sm mt-8">

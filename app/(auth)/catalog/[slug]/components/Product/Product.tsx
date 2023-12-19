@@ -13,7 +13,7 @@ const Product = ({ product, category }: ProductProps) => {
         <p className="text-sm md:text-base xl:text-lg font-semibold md:font-bold mt-2 md:mt-4">
           {product.title}
         </p>
-        <p className="text-sm md:text-base lg:text-sm text-gray-300 mt-1 md:mt-2">
+        <p className="text-sm md:text-base lg:text-sm dark:text-gray-300 mt-1 md:mt-2">
           {product.description}
         </p>
         <p className="text-sm md:text-base font-bold mt-1">{category}</p>
