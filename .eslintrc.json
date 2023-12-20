@@ -1,3 +1,73 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["perfectionist"],
+  "rules": {
+    "perfectionist/sort-imports": [
+      "error",
+      {
+        "groups": [
+          "react",
+          "next",
+          "type",
+          ["builtin", "external"],
+          "internal-type",
+          "internal",
+          ["parent-type", "sibling-type", "index-type"],
+          ["parent", "sibling", "index"],
+          "object",
+          "unknown"
+        ],
+        "custom-groups": {
+          "value": {
+            "react": ["react", "react-*", "react/*", "react-*/*"],
+            "next": ["next", "next/*", "next-*", "next-*/*"]
+          },
+          "type": {
+            "react": ["react", "react-*", "react/*", "react-*/*"],
+            "next": ["next", "next/*", "next-*", "next-*/*"]
+          }
+        },
+        "internal-pattern": ["@/**"]
+      }
+    ],
+    "perfectionist/sort-named-imports": [
+      "error",
+      {
+        "type": "alphabetical"
+      }
+    ],
+
+    "perfectionist/sort-jsx-props": [
+      "error",
+      {
+        "type": "line-length",
+        "groups": ["shorthand", "unknown", "multiline", "callback"],
+        "custom-groups": {
+          "callback": "on*"
+        }
+      }
+    ],
+
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "type": "line-length"
+      }
+    ],
+
+    "perfectionist/sort-interfaces": [
+      "error",
+      {
+        "type": "natural",
+        "groups": ["multiline"]
+      }
+    ],
+    "perfectionist/sort-object-types": [
+      "error",
+      {
+        "type": "natural",
+        "groups": ["multiline"]
+      }
+    ]
+  }
 }
