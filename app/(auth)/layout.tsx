@@ -1,5 +1,5 @@
-import AuthLayout from "@/components/AuthLayout";
+import UnauthorizedhLayout from "@/components/UnauthorizedLayout";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <AuthLayout>{children}</AuthLayout>;
+  return <UnauthorizedhLayout>{children}</UnauthorizedhLayout>;
 }

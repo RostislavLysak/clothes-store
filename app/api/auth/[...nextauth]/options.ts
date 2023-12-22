@@ -3,11 +3,10 @@ import { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 import { login } from '@/AuthService/auth'
-import linking from '@/routes/linking'
 
 const options: NextAuthOptions = {
   pages: {
-    signIn: linking.auth.login,
+    signIn: `/login`,
   },
 
   jwt: {
@@ -22,6 +21,19 @@ const options: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null
+        const { email, password } = credentials
+
+        try {
+          const res = login({ email, password })
+
+          return res
+        } catch (e) {
+          return null
+        }
+      },
+
       credentials: {
         email: {
           type: 'gmail',
@@ -35,20 +47,6 @@ const options: NextAuthOptions = {
           label: 'Password',
           placeholder: 'Password',
         },
-      },
-
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null
-        const { email, password } = credentials
-
-        try {
-          const res = login({ email, password })
-
-          return res
-        } catch (e) {
-          console.log(e)
-          return null
-        }
       },
     }),
   ],

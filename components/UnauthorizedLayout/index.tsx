@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 import useScrollHeader from '@/hooks/useScrollHeader'
-import linking from '@/routes/linking'
+import Routes from '@/routes'
 
 import Loader from '../Loader'
 
@@ -21,7 +21,7 @@ export default function UnauthorizedhLayout({
 
   useEffect(() => {
     if (status === 'authenticated') {
-      router.replace(linking.dashboard.root)
+      router.replace(Routes.root)
     }
   }, [status])
 
@@ -32,8 +32,8 @@ export default function UnauthorizedhLayout({
   return (
     <>
       <header
-        className={`fixed top-0 z-10 flex w-full border-b p-4 backdrop-blur-md transition-all duration-500 ${
-          !show && '-top-24'
+        className={`fixed z-10 flex w-full border-b p-4 backdrop-blur-md transition-all duration-500 ${
+          !show ? '-top-24' : 'top-0'
         }`}
       >
         <Image

@@ -1,25 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const useScrollHeader = () => {
   const [show, setShow] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const lastScrollY = useRef(0)
 
-  const controlNavbar = () => {
-    if (window.scrollY > lastScrollY) {
-      setShow(false)
-    } else {
-      setShow(true)
+  useEffect(() => {
+    const controlNavbar = () => {
+      const positiveWindow = window.scrollY < 0 ? 0 : window.scrollY
+        setShow(!(positiveWindow > lastScrollY.current))
+
+        lastScrollY.current = positiveWindow
     }
 
-    setLastScrollY(window.scrollY)
-  }
-  useEffect(() => {
     window.addEventListener('scroll', controlNavbar)
 
     return () => {
       window.removeEventListener('scroll', controlNavbar)
     }
-  }, [lastScrollY])
+  }, [])
 
   return {
     show,

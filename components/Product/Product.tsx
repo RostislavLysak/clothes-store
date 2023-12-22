@@ -1,11 +1,15 @@
-import { TProduct } from '../../page'
+export type TProduct = {
+  description: string
+  img: string
+  title: string
+}
 
 interface ProductProps {
   category: string
   product: TProduct
 }
 
-const Product = ({ product, category }: ProductProps) => {
+export const Product = ({ product, category }: ProductProps) => {
   return (
     <div className='flex flex-col justify-between items-center text-center w-5/12 lg:w-1/5 p-6 border border-sky-50 rounded-md mx-2 my-4'>
       <img alt={category} src={product.img} className='max-w-full rounded-md' />
@@ -21,5 +25,3 @@ const Product = ({ product, category }: ProductProps) => {
     </div>
   )
 }
-
-export default Product

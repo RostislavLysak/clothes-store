@@ -1,7 +1,6 @@
-import Product from './components/Product'
-import { TProduct } from './page'
+import { Product, TProduct } from '@/components/Product/Product'
 
-interface ViewProps {
+type ViewProps = {
   category: string
   data: TProduct[]
 }
