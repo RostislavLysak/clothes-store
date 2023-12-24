@@ -1,53 +1,70 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
+import axios from 'axios'
+
 import { capitalize } from '@/utils'
 
+import Button from '../Button/Button'
+
+export type TCategory = {
+  category: string
+}
+
 type CategoriesListProps = {
-  categories: string[]
   onClose?: () => void
   title?: string
 }
 
+const getUniqueCategories = async () => {
+  const res = await axios.get('/api/categories')
+
+  return res.data
+}
+
 export const CategoriesList = ({
   onClose,
-  categories,
   title = 'Categories',
 }: CategoriesListProps) => {
   const { slug } = useParams()
   const [open, setOpen] = useState(false)
+  const [data, setData] = useState<TCategory[]>([])
+
+  useEffect(() => {
+    getUniqueCategories().then(setData)
+  }, [])
 
   return (
     <div className='flex flex-col p-6'>
       <div className='flex justify-center'>
-        <button
-          className={`w-fit text-lg text-gray-400 font-bold font-sans lg:pointer-events-none lg:mb-4 ${
+        <Button
+          className={`w-fit text-lg text-gray-400 font-bold font-sans lg:pointer-events-none ${
             open ? 'mb-4' : ''
           }`}
           onClick={() => setOpen(!open)}
         >
           {title}
-        </button>
+        </Button>
       </div>
       <div
         className={`flex flex-col lg:overflow-visible lg:h-auto ${
           !open ? 'overflow-hidden h-0' : ''
         }`}
       >
-        {categories.map((item: string) => (
+        {data.map((item) => (
           <Link
-            key={item}
-            href={`/${item}`}
-            className={`text-base border-2 border-t-0 first-of-type:border-t-2 dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 lg:border-none lg:bg-transparent lg:hover:bg-transparent lg:w-fit lg:focus:bg-transparent xl:text-lg p-2 ${
-              slug === item ? 'text-blue-300' : ''
+            key={item.category}
+            href={`/${item.category}`}
+            className={`text-base hover:text-blue-300 lg:w-fit xl:text-lg p-2 ${
+              slug === item.category ? 'text-blue-300' : ''
             }`}
             onClick={onClose}
           >
-            {capitalize(item)}
+            {capitalize(item.category)}
           </Link>
         ))}
       </div>

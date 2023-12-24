@@ -1,7 +1,8 @@
 const Routes = {
   root: '/',
-  // catalog: 'catalog',
   login: 'login',
+  register: 'register',
+  products: 'products',
 }
 
 export default Routes

@@ -1,23 +1,26 @@
-import { Product } from '@/components/Product/Product'
-import { capitalize } from '@/utils'
+'use client'
+import { useEffect, useState } from 'react'
 
-import { TProductList } from './page'
+import axios from 'axios'
 
-type ViewProps = {
-  data: TProductList
+import { Product, TProduct } from '@/components/Product/Product'
+import Routes from '@/routes'
+
+const getProducts = async () => {
+  const res = await axios.get<Promise<TProduct[]>>(`/api/${Routes.products}`)
+  return res.data
 }
+const View = () => {
+  const [data, setData] = useState<TProduct[]>([])
 
-const View = ({ data }: ViewProps) => {
+  useEffect(() => {
+    getProducts().then(setData)
+  }, [])
+
   return (
     <div className='flex flex-wrap justify-center m-auto w-full'>
-      {Object.keys(data).map((category: string) => {
-        return data[category].map((item) => (
-          <Product
-            product={item}
-            key={item.title}
-            category={capitalize(category)}
-          />
-        ))
+      {data.map((item) => {
+        return <Product key={item.id} product={item} />
       })}
     </div>
   )

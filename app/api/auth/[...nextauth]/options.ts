@@ -2,21 +2,21 @@ import { type NextAuthOptions } from 'next-auth'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-import { login } from '@/AuthService/auth'
+import { login } from '@/services/auth'
 
 const options: NextAuthOptions = {
   pages: {
     signIn: `/login`,
   },
 
-  jwt: {
-    async decode() {
-      return {}
-    },
-    async encode() {
-      return 'real token'
-    },
-  }, //TODO
+  // jwt: {
+  //   async decode() {
+  //     return {}
+  //   },
+  //   async encode() {
+  //     return 'real token'
+  //   },
+  // }, //TODO
 
   providers: [
     CredentialsProvider({
@@ -26,7 +26,7 @@ const options: NextAuthOptions = {
         const { email, password } = credentials
 
         try {
-          const res = login({ email, password })
+          const res = await login({ email, password })
 
           return res
         } catch (e) {
