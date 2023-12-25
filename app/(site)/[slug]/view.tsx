@@ -9,8 +9,12 @@ import axios from 'axios'
 import { Product, TProduct } from '@/components/Product/Product'
 import Routes from '@/routes'
 
-const getProductsByCategory = async (params: string) => {
-  const res = await axios.get(`/api/${Routes.products}/${params}`)
+const getProductsByCategory = async (category: string) => {
+  const res = await axios.get(`/api/${Routes.products}`, {
+    params: {
+      category,
+    },
+  })
 
   return res.data
 }

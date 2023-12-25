@@ -18,6 +18,22 @@ const options: NextAuthOptions = {
   //   },
   // }, //TODO
 
+  session: {
+    strategy: 'jwt',
+  },
+  callbacks: {
+    async session({ token, session }: any) {
+      session.user.id = token.userId
+      return session
+    },
+    async jwt({ token, account }) {
+      if (account && account.type === 'credentials') {
+        token.userId = account.providerAccountId
+      }
+      return token
+    },
+  },
+
   providers: [
     CredentialsProvider({
       name: 'Credentials',

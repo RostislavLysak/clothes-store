@@ -51,7 +51,7 @@ export const MobileHeader = ({ show }: IHeaderProps) => {
         <div
           className={
             isOpen
-              ? 'flex flex-col justify-center items-center absolute top-0 left-0 z-50 w-full h-screen bg-white dark:bg-black'
+              ? 'fixed inset-0 z-50 flex flex-col justify-center items-center w-full h-screen bg-white dark:bg-black'
               : 'hidden'
           }
         >

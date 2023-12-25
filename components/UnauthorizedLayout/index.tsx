@@ -60,7 +60,9 @@ export default function UnauthorizedhLayout({
           </Button>
         </div>
       </header>
-      <main className='mt-32'>{children}</main>
+      <main className='flex flex-col justify-center items-center h-screen'>
+        {children}
+      </main>
     </>
   )
 }
