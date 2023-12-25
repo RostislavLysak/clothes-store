@@ -7,15 +7,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import Button from '@/components/Button/Button'
-import { CategoriesList } from '@/components/CategoriesList/CategoriesList'
+import { CategoriesList, TCategory } from '@/components/CategoriesList/CategoriesList'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
 import Routes from '@/routes'
 
 interface IHeaderProps {
+  navlinks: TCategory[]
   show: boolean
 }
 
-export const MobileHeader = ({ show }: IHeaderProps) => {
+export const MobileHeader = ({ show, navlinks }: IHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -72,7 +73,7 @@ export const MobileHeader = ({ show }: IHeaderProps) => {
               <line x1='6' y1='6' x2='18' y2='18' />
             </svg>
           </div>
-          <CategoriesList onClose={() => setIsOpen(false)} />
+          <CategoriesList categories={navlinks} onClose={() => setIsOpen(false)} />
 
           <Button onClick={() => signOut()}>Sign Out</Button>
         </div>

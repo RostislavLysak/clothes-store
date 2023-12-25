@@ -1,11 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-
-import axios from 'axios'
 
 import { capitalize } from '@/utils'
 
@@ -16,27 +14,18 @@ export type TCategory = {
 }
 
 type CategoriesListProps = {
+  categories: TCategory[]
   onClose?: () => void
   title?: string
 }
 
-const getUniqueCategories = async () => {
-  const res = await axios.get('/api/categories')
-
-  return res.data
-}
-
 export const CategoriesList = ({
   onClose,
-  title = 'Categories',
+  categories,
+  title = 'Categories'
 }: CategoriesListProps) => {
   const { slug } = useParams()
   const [open, setOpen] = useState(false)
-  const [data, setData] = useState<TCategory[]>([])
-
-  useEffect(() => {
-    getUniqueCategories().then(setData)
-  }, [])
 
   return (
     <div className='flex flex-col p-6'>
@@ -55,7 +44,7 @@ export const CategoriesList = ({
           !open ? 'overflow-hidden h-0' : ''
         }`}
       >
-        {data.map((item) => (
+        {categories.map((item) => (
           <Link
             key={item.category}
             href={`/${item.category}`}
