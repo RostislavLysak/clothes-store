@@ -8,81 +8,131 @@ import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 import Button from '@/components/Button/Button'
-import Input from '@/components/Input/Input'
+import InputControl from '@/components/InputControl/InputControl'
+import PasswordControl from '@/components/PasswordControl/PasswordControl'
+import useForm from '@/hooks/useForm'
 import Routes from '@/routes'
 
 const View = () => {
   const router = useRouter()
   const [err, setErr] = useState('')
-  const [state, setState] = useState({
-    email: '',
-    lastName: '',
-    password: '',
-    firstName: '',
-  })
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const { values, errors, submit, register } = useForm(
+    {
+      email: '',
+      lastName: '',
+      password: '',
+      firstName: '',
+    },
+    {
+      email: (v) => {
+        if (!v) {
+          return 'Email is required'
+        }
+        if (v.length < 6) {
+          return 'Min 6'
+        }
 
-    const body = {
-      email: state.email,
-      password: state.password,
-      name: `${state.firstName} ${state.lastName}`,
-    }
+        return true
+      },
+      password: (v) => {
+        if (!v) {
+          return 'Password is required'
+        }
+        if (v.length < 6) {
+          return 'Min 6'
+        }
+        if (v.length > 12) {
+          return 'Max 12'
+        }
+        return true
+      },
+      lastName: (v) => {
+        if (!v) {
+          return 'Last Name is required'
+        }
+        if (v.length < 3) {
+          return 'Min 3'
+        }
+        if (v.length > 12) {
+          return 'Max 12'
+        }
+        return true
+      },
+      firstName: (v) => {
+        if (!v) {
+          return 'First Name is required'
+        }
+        if (v.length < 3) {
+          return 'Min 3'
+        }
+        if (v.length > 12) {
+          return 'Max 12'
+        }
+        return true
+      },
+    },
+  )
 
+  const handleSubmit = async () => {
     try {
-      await axios.post(`/api/${Routes.register}`, body)
+      setIsLoading(true)
+      await axios.post(`/api/${Routes.register}`, { ...values })
 
       await signIn('credentials', {
         redirect: false,
-        email: state.email,
-        password: state.password,
+        email: values.email,
+        password: values.password,
       })
       router.push('/')
+      setIsLoading(false)
     } catch (error: any) {
       setErr(error.response.data.message)
       return null
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState({ ...state, [`${e.target.name}`]: e.target.value })
-  }
   return (
     <>
       {err && <p className='mb-2 text-lg text-center text-red-700'>{err}</p>}
+
       <form
-        className='flex flex-col items-center justify-center'
-        onSubmit={handleSubmit}
+        className='flex flex-col items-center justify-center space-y-7'
+        onSubmit={submit(handleSubmit)}
       >
-        <Input
-          name='firstName'
-          value={state.firstName}
-          placeholder='firstname'
-          onChange={handleChange}
+        <InputControl
+          label='First Name'
+          {...register('firstName')}
+          disabledAnimated
+          disabled={isLoading}
+          helperText={errors['firstName']}
         />
-        <Input
-          name='lastName'
-          value={state.lastName}
-          placeholder='lastname'
-          onChange={handleChange}
+        <InputControl
+          label='Last Name'
+          {...register('lastName')}
+          disabledAnimated
+          disabled={isLoading}
+          helperText={errors['lastName']}
         />
-        <Input
-          type='email'
-          name='email'
-          value={state.email}
-          placeholder='email'
-          onChange={handleChange}
+        <InputControl
+          label='Email'
+          {...register('email')}
+          disabledAnimated
+          disabled={isLoading}
+          helperText={errors['email']}
         />
-        <Input
-          type='password'
-          name='password'
-          value={state.password}
-          placeholder='password'
-          onChange={handleChange}
+        <PasswordControl
+          label='Password'
+          {...register('password')}
+          disabledAnimated
+          disabled={isLoading}
+          helperText={errors['password']}
         />
 
-        <Button type='submit'>Submit</Button>
+        <Button type='submit' loading={isLoading} disabled={isLoading}>
+          Register
+        </Button>
       </form>
     </>
   )

@@ -1,8 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -10,25 +7,13 @@ import useScrollHeader from '@/hooks/useScrollHeader'
 import Routes from '@/routes'
 
 import Button from '../Button/Button'
-import Loader from '../Loader'
 
 export default function UnauthorizedhLayout({
   children,
 }: React.PropsWithChildren) {
   const { show } = useScrollHeader()
 
-  const { status } = useSession()
   const router = useRouter()
-
-  useEffect(() => {
-    if (status === 'authenticated') {
-      router.replace(Routes.root)
-    }
-  }, [status])
-
-  if (status === 'loading') {
-    return <Loader />
-  }
 
   return (
     <>
@@ -43,24 +28,18 @@ export default function UnauthorizedhLayout({
           height={24}
           src='/vercel.svg'
           alt='Vercel Logo'
-          className='dark:invert m-4'
+          className='dark:invert m-4 w-[100px] h-[24px]'
         />
-        <div>
-          <Button
-            className='px-2 py-1 mt-2 mx-1 border rounded-md'
-            onClick={() => router.push('/login')}
-          >
+        <div className='[&>button]:mx-1'>
+          <Button size='sm' onClick={() => router.push(`/${Routes.login}`)}>
             Sign In
           </Button>
-          <Button
-            className='px-2 py-1 mt-2 mx-1 border rounded-md'
-            onClick={() => router.push('/register')}
-          >
+          <Button size='sm' onClick={() => router.push(`/${Routes.register}`)}>
             Sign Up
           </Button>
         </div>
       </header>
-      <main className='flex flex-col justify-center items-center h-screen'>
+      <main className='flex flex-col justify-center items-center h-[calc((100vh)-(80px))] mt-20'>
         {children}
       </main>
     </>

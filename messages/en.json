@@ -1,0 +1,55 @@
+{
+  "auth": {
+    "login": {
+      "form": {
+        "email": {
+          "placeholder": "Email"
+        },
+        "password": {
+          "placeholder": "Password"
+        },
+        "button": "Login"
+      }
+    },
+    "register": {
+      "form": {
+        "firstName": {
+          "placeholder": "First Name"
+        },
+        "lastName": {
+          "placeholder": "Last Name"
+        },
+        "email": {
+          "placeholder": "Email"
+        },
+        "password": {
+          "placeholder": "Password"
+        },
+        "button": "Register"
+      }
+    }
+  },
+  "header": {
+    "navbar": {
+      "profile": "Profile",
+      "logout": "Logout"
+    }
+  },
+  "unAuthHeader": {
+    "navbar": {
+      "singIn": "Sign In",
+      "signUp": "Sign Up"
+    }
+  },
+  "profile": {
+    "form": {
+        "firstName": {
+            "placeholder": "First Name"
+        },
+        "lastName": {
+            "placeholder": "Last Name"
+        },
+        "button": "Change"
+    }
+  }
+}

@@ -2,21 +2,22 @@
 
 import { useState } from 'react'
 
-import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Button from '@/components/Button/Button'
-import { CategoriesList, TCategory } from '@/components/CategoriesList/CategoriesList'
+import { CategoriesList } from '@/components/CategoriesList/CategoriesList'
+import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
+import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
 
 interface IHeaderProps {
-  navlinks: TCategory[]
+  categories: TCategory[]
+  profile: TUser
   show: boolean
 }
 
-export const MobileHeader = ({ show, navlinks }: IHeaderProps) => {
+export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -27,23 +28,12 @@ export const MobileHeader = ({ show, navlinks }: IHeaderProps) => {
 
   return (
     <header
-      className={`fixed z-10 flex justify-between items-center w-full border-b p-4 backdrop-blur-md transition-all duration-500 ${
+      className={`fixed z-10 flex justify-between items-center w-full border-b p-4 px-8 backdrop-blur-md transition-all duration-500 ${
         !show && !isOpen ? '-top-24' : 'top-0'
       }`}
     >
-      <Link href={Routes.root}>
-        <Image
-          priority
-          width={100}
-          height={24}
-          src='/vercel.svg'
-          alt='Vercel Logo'
-          className='dark:invert m-4'
-        />
-      </Link>
-
-      <section className={`flex lg:hidden h-fit px-2`}>
-        <div className='space-y-2' onClick={handleClick}>
+      <section className={`flex lg:hidden h-fit px-2 py-4`}>
+        <div className='space-y-2 cursor-pointer' onClick={handleClick}>
           <span className='block h-0.5 w-8 animate-pulse bg-slate-950 dark:bg-gray-300'></span>
           <span className='block h-0.5 w-8 animate-pulse bg-slate-950 dark:bg-gray-300'></span>
           <span className='block h-0.5 w-8 animate-pulse bg-slate-950 dark:bg-gray-300'></span>
@@ -73,11 +63,27 @@ export const MobileHeader = ({ show, navlinks }: IHeaderProps) => {
               <line x1='6' y1='6' x2='18' y2='18' />
             </svg>
           </div>
-          <CategoriesList categories={navlinks} onClose={() => setIsOpen(false)} />
-
-          <Button onClick={() => signOut()}>Sign Out</Button>
+          <Link
+            href={Routes.root}
+            className='absolute top-8'
+            onClick={() => setIsOpen(false)}
+          >
+            <Image
+              priority
+              width={100}
+              height={24}
+              src='/vercel.svg'
+              alt='Vercel Logo'
+              className='dark:invert m-4 w-[100px] h-[24px]'
+            ></Image>
+          </Link>
+          <CategoriesList
+            categories={categories}
+            onClose={() => setIsOpen(false)}
+          />
         </div>
       </section>
+      <Profile profile={profile} />
     </header>
   )
 }

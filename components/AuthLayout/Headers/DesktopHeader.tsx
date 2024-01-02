@@ -1,8 +1,8 @@
-import { signOut } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Button from '@/components/Button/Button'
+import Profile from '@/components/Profile/Profile'
+import { TUser } from '@/plugins/types/requests'
 
 type TNavlink = {
   href: string
@@ -11,13 +11,14 @@ type TNavlink = {
 
 interface IHeaderProps {
   navlinks: TNavlink[]
+  profile: TUser
   show: boolean
 }
 
-export const DesktopHeader = ({ show, navlinks }: IHeaderProps) => {
+export const DesktopHeader = ({ show, profile, navlinks }: IHeaderProps) => {
   return (
     <header
-      className={`fixed z-10 flex justify-between w-full border-b p-4 backdrop-blur-md transition-all duration-500 ${
+      className={`fixed z-10 flex justify-between items-center w-full border-b p-4 px-8 backdrop-blur-md transition-all duration-500 ${
         !show ? '-top-24' : 'top-0'
       }`}
     >
@@ -39,14 +40,13 @@ export const DesktopHeader = ({ show, navlinks }: IHeaderProps) => {
                 height={24}
                 src='/vercel.svg'
                 alt='Vercel Logo'
-                className='dark:invert m-4'
+                className='dark:invert m-4 w-[100px] h-[24px]'
               ></Image>
             </Link>
           ),
         )}
       </nav>
-
-      <Button onClick={() => signOut()}>Sign Out</Button>
+      <Profile profile={profile} />
     </header>
   )
 }

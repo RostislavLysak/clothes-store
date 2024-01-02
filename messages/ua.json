@@ -1,0 +1,56 @@
+{
+    "auth": {
+      "login": {
+        "form": {
+          "email": {
+            "placeholder": "Email"
+          },
+          "password": {
+            "placeholder": "Пароль"
+          },
+          "button": "Увійти"
+        }
+      },
+      "register": {
+        "form": {
+          "firstName": {
+            "placeholder": "Ім'я"
+          },
+          "lastName": {
+            "placeholder": "Прізвище"
+          },
+          "email": {
+            "placeholder": "Email"
+          },
+          "password": {
+            "placeholder": "Пароль"
+          },
+          "button": "Зареєструватися"
+        }
+      }
+    },
+    "header": {
+      "navbar": {
+        "profile": "Профіль",
+        "logout": "Вийти"
+      }
+    },
+    "unAuthHeader": {
+      "navbar": {
+        "singIn": "Увійти",
+        "signUp": "Зареєструватися"
+      }
+    },
+    "profile": {
+      "form": {
+          "firstName": {
+              "placeholder": "Ім'я"
+          },
+          "lastName": {
+              "placeholder": "Прізвище"
+          },
+          "button": "Змінити"
+      }
+    }
+  }
+  

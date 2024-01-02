@@ -1,15 +1,10 @@
 import { NextResponse } from 'next/server'
 
-import prisma from '@/prisma'
+import ShopService from '@/api-services/ShopService'
 
 export const GET = async () => {
   try {
-    const categories = await prisma.product.findMany({
-      distinct: ['category'],
-      select: {
-        category: true,
-      },
-    })
+    const categories = await ShopService.getUniqueCategories()
 
     return NextResponse.json(categories)
   } catch (e: any) {

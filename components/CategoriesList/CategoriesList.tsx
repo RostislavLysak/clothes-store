@@ -1,17 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
+import { TCategory } from '@/plugins/types/requests'
 import { capitalize } from '@/utils'
 
 import Button from '../Button/Button'
-
-export type TCategory = {
-  category: string
-}
 
 type CategoriesListProps = {
   categories: TCategory[]
@@ -22,27 +17,21 @@ type CategoriesListProps = {
 export const CategoriesList = ({
   onClose,
   categories,
-  title = 'Categories'
+  title = 'Categories',
 }: CategoriesListProps) => {
   const { slug } = useParams()
-  const [open, setOpen] = useState(false)
 
   return (
-    <div className='flex flex-col p-6'>
+    <div className={`flex flex-col p-6`}>
       <div className='flex justify-center'>
         <Button
-          className={`w-fit text-lg text-gray-400 font-bold font-sans lg:pointer-events-none ${
-            open ? 'mb-4' : ''
-          }`}
-          onClick={() => setOpen(!open)}
+          className={`w-fit text-lg text-gray-400 font-bold font-sans border-none`}
         >
           {title}
         </Button>
       </div>
       <div
-        className={`flex flex-col lg:overflow-visible lg:h-auto ${
-          !open ? 'overflow-hidden h-0' : ''
-        }`}
+        className={`flex items-center justify-center lg:overflow-visible lg:h-auto`}
       >
         {categories.map((item) => (
           <Link
