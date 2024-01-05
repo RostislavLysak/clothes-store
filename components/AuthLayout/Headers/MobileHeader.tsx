@@ -10,6 +10,7 @@ import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
 import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
+import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 
 interface IHeaderProps {
   categories: TCategory[]
@@ -81,6 +82,7 @@ export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
             categories={categories}
             onClose={() => setIsOpen(false)}
           />
+          <LanguageToggle onClose={() => setIsOpen(false)} />
         </div>
       </section>
       <Profile profile={profile} />

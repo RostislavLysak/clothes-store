@@ -3,16 +3,16 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
-import { TUpdateImage } from '@/plugins/types/requests'
 import AddBoxIcon from '@/plugins/ui/icons/AddBoxIcon'
 import ProfileIcon from '@/plugins/ui/icons/ProfileIcon'
-import UserService from '@/services/UserService'
+import * as api from '@/services/client'
 import { readAsDataURL } from '@/utils'
 
 import Button from '../Button/Button'
+import { useClickAway } from '@/hooks/useClickAway'
 
 type ProfileProps = {
-  data: TUpdateImage
+  img: string
 }
 
 type TMenu = {
@@ -20,17 +20,18 @@ type TMenu = {
   label: string
 }
 
-const ImageChanger = ({ data }: ProfileProps) => {
+const ImageChanger = ({ img }: ProfileProps) => {
   const { refresh } = useRouter()
-  const ref = useRef<HTMLInputElement | null>(null)
+  const ref = useRef(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [open, setOpen] = useState<boolean>(false)
-  const { img, email } = data
+  useClickAway(setOpen, ref)
 
   const menu: TMenu[] = [
     {
       label: 'Upload a photo',
       action: () => {
-        ref.current?.click()
+        inputRef.current?.click()
         setOpen((prev) => !prev)
       },
     },
@@ -38,7 +39,7 @@ const ImageChanger = ({ data }: ProfileProps) => {
       label: 'Remove a photo',
       action: async () => {
         setOpen((prev) => !prev)
-        await UserService.updateImage({ email, img: '' })
+        await api.user.updateImage({ img: '' })
         refresh()
       },
     },
@@ -46,20 +47,19 @@ const ImageChanger = ({ data }: ProfileProps) => {
 
   const handleChangeFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target
-
     const file = files?.[0]
 
     if (file) {
       const base64 = (await readAsDataURL(file)) as string
 
-      await UserService.updateImage({ email, img: base64 })
+      await api.user.updateImage({ img: base64 })
 
       refresh()
     }
   }
 
   return (
-    <div className='relative w-fit p-3 mb-6 border rounded-md'>
+    <div ref={ref} className='relative w-fit p-3 mb-6 border rounded-md'>
       {!img ? (
         <ProfileIcon width={40} />
       ) : (
@@ -94,7 +94,7 @@ const ImageChanger = ({ data }: ProfileProps) => {
           </Button>
         ))}
         <input
-          ref={ref}
+          ref={inputRef}
           type='file'
           className='hidden'
           accept='image/png, image/jpeg'

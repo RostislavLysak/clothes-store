@@ -10,3 +10,20 @@ export const readAsDataURL = (file: File) => {
     reader.onerror = (err) => rej(err)
   })
 }
+
+export const upperCamelCase = (value: string) => {
+  let newValue = ''
+  for (let i = 0; i < value.length; ++i) {
+    let charCode = value.charCodeAt(i)
+
+    if (charCode > 64 && charCode < 91) {
+      newValue += ` ${value[i]}`
+    } else {
+      newValue += value[i]
+    }
+  }
+
+  const result = capitalize(newValue)
+
+  return result
+}

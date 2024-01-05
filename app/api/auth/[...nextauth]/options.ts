@@ -3,8 +3,8 @@ import { type NextAuthOptions } from 'next-auth'
 import jwt from 'jsonwebtoken'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-import AuthService from '@/api-services/AuthService'
-import { IAccessTokenPayload } from '@/api-services/TokenService'
+import AuthService from '@/ApiService/AuthService'
+import { IAccessTokenPayload } from '@/ApiService/TokenService'
 import Routes from '@/routes'
 
 function getTokenFields(

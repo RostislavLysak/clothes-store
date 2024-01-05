@@ -7,9 +7,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   disabledAnimated?: boolean
   helperText?: string
   label: string
+  type: 'password'
 }
 
 const PasswordControl = ({
+  type,
   label,
   helperText,
   disabledAnimated,
@@ -32,7 +34,7 @@ const PasswordControl = ({
           </div> */}
           <input
             placeholder=' '
-            type={show ? 'text' : 'password'}
+            type={show ? 'text' : type}
             className={`peer h-full w-full rounded-[7px] border border-white bg-transparent border-t-transparent ${
               !props.value && 'border-t-white'
             } px-3 py-2.5 font-sans text-base font-normal !text-black dark:!text-white outline outline-0 transition-all placeholder-shown:border focus:border-2 focus:border-white focus:border-t-transparent focus:outline-0 ${

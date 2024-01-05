@@ -12,14 +12,14 @@ export interface IRefreshTokenPayload extends IAccessTokenPayload {
 }
 
 class TokenService {
-  _signAccessToken(payload: TTokenPayload) {
+  private signAccessToken(payload: TTokenPayload) {
     return jwt.sign(payload, config.JWT_SECRET, {
       expiresIn: config.ACCESS_TOKEN_EXPIRES_IN,
       algorithm: config.ACCESS_TOKEN_ALGORITHM,
     })
   }
 
-  _signRefreshToken(payload: TTokenPayload) {
+  private signRefreshToken(payload: TTokenPayload) {
     const jti = `${payload.userId}:${crypto.randomUUID()}`
     return jwt.sign({ ...payload, jti }, config.JWT_SECRET, {
       expiresIn: config.REFRESH_TOKEN_EXPIRES_IN,
@@ -28,8 +28,8 @@ class TokenService {
   }
 
   generateTokens(payload: TTokenPayload) {
-    const accessToken = this._signAccessToken(payload)
-    const refreshToken = this._signRefreshToken(payload)
+    const accessToken = this.signAccessToken(payload)
+    const refreshToken = this.signRefreshToken(payload)
 
     return {
       accessToken,

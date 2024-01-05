@@ -2,11 +2,11 @@ import { redirect } from 'next/navigation'
 
 import { Product } from '@/components/Product/Product'
 import Routes from '@/routes'
-import ShopService from '@/services/ShopService'
+import * as api from '@/services/server'
 
 export default async function Home() {
   try {
-    const products = await ShopService.getProducts()
+    const products = await api.shop.getProducts()
 
     return (
       <div className='flex flex-wrap justify-center m-auto w-full'>

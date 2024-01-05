@@ -1,26 +1,24 @@
-import axios from 'axios'
 import { TCategory, TProduct } from '@/plugins/types/requests'
+import BaseService from './BaseService'
 
-class ShopService {
+class ShopService extends BaseService {
   async getProducts() {
-    const products = await axios.get(`${process.env.API_URL}/shop/products`)
+    const products = await this.httpClient.get(`/shop/products`)
 
     return products.data as TProduct[]
   }
 
   async getByCategoryProducts(category: string) {
-    const products = await axios.get(
-      `${process.env.API_URL}/shop/products/${category}`,
-    )
+    const products = await this.httpClient.get(`/shop/products/${category}`)
 
     return products.data as TProduct[]
   }
 
   async getUniqueCateries() {
-    const categories = await axios.get(`${process.env.API_URL}/shop/categories`)
+    const categories = await this.httpClient.get(`/shop/categories`)
 
     return categories.data as TCategory[]
   }
 }
 
-export default new ShopService()
+export default ShopService

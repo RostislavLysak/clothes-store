@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
@@ -9,6 +9,8 @@ import ProfileIcon from '@/plugins/ui/icons/ProfileIcon'
 import Routes from '@/routes'
 
 import Button from '../Button/Button'
+import { useClickAway } from '@/hooks/useClickAway'
+import { useTranslations } from 'next-intl'
 
 type ProfileProps = {
   profile: TUser
@@ -19,18 +21,23 @@ type TNavlink = {
   title: string
 }
 
-const menu: TNavlink[] = [
-  {
-    title: 'Profile',
-    href: Routes.profile,
-  },
-]
-
 const Profile = ({ profile }: ProfileProps) => {
+  const t = useTranslations('Header')
   const [open, setOpen] = useState<boolean>(false)
   const { img } = profile
+  const ref = useRef(null)
+
+  const menu: TNavlink[] = [
+    {
+      title: t('navbar.profile'),
+      href: Routes.profile,
+    },
+  ]
+
+  useClickAway(setOpen, ref)
+
   return (
-    <div>
+    <div ref={ref}>
       <Button
         type='button'
         className={`relative ${!img && 'p-2'} border rounded-md cursor-pointer`}
@@ -65,13 +72,13 @@ const Profile = ({ profile }: ProfileProps) => {
         ))}
         <Button
           type='button'
-          className='block p-8 py-2 hover:bg-slate-400 rounded-b-md'
+          className='block w-full p-8 py-2 hover:bg-slate-400 rounded-b-md'
           onClick={() => {
             signOut()
             setOpen((prev) => !prev)
           }}
         >
-          Logout
+          {t('navbar.logout')}
         </Button>
       </div>
     </div>

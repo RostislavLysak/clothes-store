@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import Profile from '@/components/Profile/Profile'
 import { TUser } from '@/plugins/types/requests'
+import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 
 type TNavlink = {
   href: string
@@ -46,7 +47,10 @@ export const DesktopHeader = ({ show, profile, navlinks }: IHeaderProps) => {
           ),
         )}
       </nav>
-      <Profile profile={profile} />
+      <div className='flex items-center justify-center [&>*]:mx-2'>
+        <LanguageToggle />
+        <Profile profile={profile} />
+      </div>
     </header>
   )
 }

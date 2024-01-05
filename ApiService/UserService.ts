@@ -4,7 +4,7 @@ import TokenService from './TokenService'
 import { IUpdateImage, IUpdateProfile } from '@/plugins/types/models'
 
 class UserService {
-  async getUser(accessToken: string | null) {
+  private getPayload(accessToken: string | null) {
     const token = accessToken?.split(' ')[1]
 
     if (!token) {
@@ -16,6 +16,12 @@ class UserService {
     if (!payload?.userId) {
       throw ApiError.BadRequest('Bad request')
     }
+
+    return payload
+  }
+
+  async getUser(accessToken: string | null) {
+    const payload = this.getPayload(accessToken)
 
     const user = await prisma.user.findUnique({
       where: {
@@ -30,10 +36,12 @@ class UserService {
     return user
   }
 
-  async updateProfile({ email, firstName, lastName }: IUpdateProfile) {
+  async updateProfile({ accessToken, firstName, lastName }: IUpdateProfile) {
+    const payload = this.getPayload(accessToken)
+
     const user = await prisma.user.update({
       where: {
-        email,
+        id: payload.userId,
       },
       data: {
         firstName,
@@ -44,10 +52,12 @@ class UserService {
     return user
   }
 
-  async updateImage({ email, img }: IUpdateImage) {
+  async updateImage({ accessToken, img }: IUpdateImage) {
+    const payload = this.getPayload(accessToken)
+
     const user = await prisma.user.update({
       where: {
-        email,
+        id: payload.userId,
       },
       data: {
         img,

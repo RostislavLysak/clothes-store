@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import UserService from '@/api-services/UserService'
+import UserService from '@/ApiService/UserService'
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { img, email } = await req.json()
+    const { img, headers } = await req.json()
 
-    const user = await UserService.updateImage({ img, email })
+    const user = await UserService.updateImage({
+      img,
+      accessToken: headers?.authorization,
+    })
 
     return NextResponse.json(user)
   } catch (e: any) {

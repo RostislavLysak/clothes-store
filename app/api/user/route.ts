@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import UserService from '@/api-services/UserService'
+import UserService from '@/ApiService/UserService'
 
 export const GET = async (req: NextRequest) => {
   try {

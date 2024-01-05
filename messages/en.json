@@ -1,55 +1,73 @@
 {
-  "auth": {
-    "login": {
-      "form": {
-        "email": {
-          "placeholder": "Email"
-        },
-        "password": {
-          "placeholder": "Password"
-        },
-        "button": "Login"
-      }
-    },
-    "register": {
-      "form": {
-        "firstName": {
-          "placeholder": "First Name"
-        },
-        "lastName": {
-          "placeholder": "Last Name"
-        },
-        "email": {
-          "placeholder": "Email"
-        },
-        "password": {
-          "placeholder": "Password"
-        },
-        "button": "Register"
-      }
+  "Login": {
+    "form": {
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "button": "Login"
     }
   },
-  "header": {
+  "Register": {
+    "form": {
+      "firstName": {
+        "label": "First Name"
+      },
+      "lastName": {
+        "label": "Last Name"
+      },
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "button": "Register"
+    }
+  },
+  "Header": {
     "navbar": {
       "profile": "Profile",
       "logout": "Logout"
     }
   },
-  "unAuthHeader": {
+  "UnAuthHeader": {
     "navbar": {
-      "singIn": "Sign In",
+      "signIn": "Sign In",
       "signUp": "Sign Up"
     }
   },
-  "profile": {
+  "Profile": {
     "form": {
-        "firstName": {
-            "placeholder": "First Name"
-        },
-        "lastName": {
-            "placeholder": "Last Name"
-        },
-        "button": "Change"
+      "firstName": {
+        "label": "First Name"
+      },
+      "lastName": {
+        "label": "Last Name"
+      },
+      "button": "Change"
+    }
+  },
+  "Validation": {
+    "firstName": {
+      "required": "First Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "lastName": {
+      "required": "Last Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "email": {
+      "required": "Email is required",
+      "min": "Min 6"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Min 6"
     }
   }
 }

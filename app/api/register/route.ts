@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import AuthService from '@/api-services/AuthService'
+import AuthService from '@/ApiService/AuthService'
 
 export const POST = async (req: NextRequest) => {
   try {

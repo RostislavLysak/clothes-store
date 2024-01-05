@@ -8,14 +8,15 @@ export interface IRegister extends ILogin {
   lastName: string
 }
 
-export interface IUpdateProfile extends Omit<IRegister, 'password'> {
-  email: string
+export interface IUpdateProfile {
   firstName: string
   lastName: string
+  accessToken: string | null
 }
 
-export interface IUpdateImage extends Pick<ILogin, 'email'> {
+export interface IUpdateImage {
   img: string
+  accessToken: string | null
 }
 
 export interface IRefreshToken {

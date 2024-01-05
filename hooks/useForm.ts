@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 type ValidationResult = boolean | string
@@ -8,6 +9,7 @@ const useForm = <T>(
   schema: T,
   rules?: Partial<Record<keyof T, ValidationFn<string>>>,
 ) => {
+  const t = useTranslations('Validation')
   const [values, setValues] = useState<T>(schema)
   const [errors, setErros] = useState<Partial<Record<keyof T, string>>>({})
 
@@ -21,7 +23,7 @@ const useForm = <T>(
       const message = rule(value)
 
       if (typeof message === 'string') {
-        setErros((prev) => ({ ...prev, [name]: message }))
+        setErros((prev) => ({ ...prev, [name]: t(message) }))
       }
 
       if (message && typeof message === 'boolean') {
@@ -47,7 +49,7 @@ const useForm = <T>(
         //@ts-ignore
         const message = r(values[n as keyof T])
         if (typeof message === 'string') {
-          setErros((prev) => ({ ...prev, [n]: message }))
+          setErros((prev) => ({ ...prev, [n]: t(message) }))
         }
 
         return typeof message === 'boolean' && message

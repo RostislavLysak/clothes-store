@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-import ShopService from '@/api-services/ShopService'
+import ShopService from '@/ApiService/ShopService'
 
 export const GET = async () => {
   try {

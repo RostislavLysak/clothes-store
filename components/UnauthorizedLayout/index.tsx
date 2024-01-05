@@ -7,10 +7,13 @@ import useScrollHeader from '@/hooks/useScrollHeader'
 import Routes from '@/routes'
 
 import Button from '../Button/Button'
+import LanguageToggle from '../LanguageToggle/LanguageToggle'
+import { useTranslations } from 'next-intl'
 
 export default function UnauthorizedhLayout({
   children,
 }: React.PropsWithChildren) {
+  const t = useTranslations('UnAuthHeader')
   const { show } = useScrollHeader()
 
   const router = useRouter()
@@ -30,12 +33,13 @@ export default function UnauthorizedhLayout({
           alt='Vercel Logo'
           className='dark:invert m-4 w-[100px] h-[24px]'
         />
-        <div className='[&>button]:mx-1'>
+        <div className='flex [&>button]:mx-1'>
+          <LanguageToggle />
           <Button size='sm' onClick={() => router.push(`/${Routes.login}`)}>
-            Sign In
+            {t('navbar.signIn')}
           </Button>
           <Button size='sm' onClick={() => router.push(`/${Routes.register}`)}>
-            Sign Up
+            {t('navbar.signUp')}
           </Button>
         </div>
       </header>

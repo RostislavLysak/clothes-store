@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import UserService from '@/api-services/UserService'
+import UserService from '@/ApiService/UserService'
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { email, lastName, firstName } = await req.json()
+    const { lastName, firstName, headers } = await req.json()
 
-    const user = await UserService.updateProfile({ email, lastName, firstName })
+    const user = await UserService.updateProfile({ lastName, firstName, accessToken: headers?.authorization })
 
     return NextResponse.json(user)
   } catch (e: any) {
