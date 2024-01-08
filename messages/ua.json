@@ -1,0 +1,54 @@
+{
+  "Login": {
+    "form": {
+      "email": "Email",
+      "password": "Пароль",
+      "button": "Увійти"
+    }
+  },
+  "Register": {
+    "form": {
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "email": "Email",
+      "password": "Пароль",
+      "button": "Зареєструватися"
+    }
+  },
+
+  "Header": {
+    "profile": "Профіль",
+    "logout": "Вийти"
+  },
+  "UnAuthHeader": {
+    "signIn": "Увійти",
+    "signUp": "Реєстрація"
+  },
+  "Profile": {
+    "form": {
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "button": "Змінити"
+    }
+  },
+  "Validation": {
+    "firstName": {
+      "required": "Ім'я обов'язкове",
+      "min": "Мінімум 3",
+      "max": "Максимум 12"
+    },
+    "lastName": {
+      "required": "Прізвище обов'язкове",
+      "min": "Мінімум 3",
+      "max": "Максимум 12"
+    },
+    "email": {
+      "required": "Email обов'язковий",
+      "min": "Мінімум 6"
+    },
+    "password": {
+      "required": "Пароль обов'язковий",
+      "min": "Мінімум 6"
+    }
+  }
+}

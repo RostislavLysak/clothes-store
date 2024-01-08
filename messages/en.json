@@ -1,0 +1,53 @@
+{
+  "Login": {
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "button": "Login"
+    }
+  },
+  "Register": {
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "button": "Register"
+    }
+  },
+  "Header": {
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "UnAuthHeader": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
+  },
+  "Profile": {
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "button": "Change"
+    }
+  },
+  "Validation": {
+    "firstName": {
+      "required": "First Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "lastName": {
+      "required": "Last Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "email": {
+      "required": "Email is required",
+      "min": "Min 6"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Min 6"
+    }
+  }
+}
