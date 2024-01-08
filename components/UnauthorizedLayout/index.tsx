@@ -8,12 +8,10 @@ import Routes from '@/routes'
 
 import Button from '../Button/Button'
 import LanguageToggle from '../LanguageToggle/LanguageToggle'
+import { TUnAuthHeader } from '@/plugins/ui/i18n/translations'
 
 interface UnauthorizedhLayoutProps extends React.PropsWithChildren {
-  t: {
-    signIn: string
-    signUp: string
-  }
+  t: TUnAuthHeader
 }
 
 export default function UnauthorizedhLayout({

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 import Profile from '@/components/Profile/Profile'
 import { TUser } from '@/plugins/types/requests'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 type TNavlink = {
   href: string
@@ -13,10 +14,7 @@ type TNavlink = {
 }
 
 interface IHeaderProps {
-  t: {
-    logout: string
-    profile: string
-  }
+  t: THeader
   navlinks: TNavlink[]
   profile: TUser
   show: boolean

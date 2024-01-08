@@ -13,12 +13,10 @@ import Routes from '@/routes'
 
 import Button from '../Button/Button'
 import MenuPopover from '../MenuPopover/MenuPopover'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 type ProfileProps = {
-  t: {
-    logout: string
-    profile: string
-  }
+  t: THeader
   profile: TUser
 }
 

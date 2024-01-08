@@ -9,13 +9,10 @@ import Button from '@/components/Button/Button'
 import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
 import { validate } from '@/validation'
+import { TLoginPage } from '@/plugins/ui/i18n/translations'
 
 type ViewProps = {
-  t: {
-    button: string
-    email: string
-    password: string
-  }
+  t: TLoginPage
 }
 
 const View = ({ t }: ViewProps) => {

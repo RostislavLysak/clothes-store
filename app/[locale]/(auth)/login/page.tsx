@@ -1,10 +1,11 @@
 import { getTranslation } from '@/plugins/ui/i18n'
 
 import View from './view'
+import { translationSubKeys } from '@/plugins/ui/i18n/translations'
 
 const Login = async () => {
-  const data = ['email', 'password', 'button'] as const
-  const td = await getTranslation(data, 'Login.form')
+  const subKeys = translationSubKeys.loginPage
+  const td = await getTranslation(subKeys, 'Login.form')
 
   return <View t={td} />
 }

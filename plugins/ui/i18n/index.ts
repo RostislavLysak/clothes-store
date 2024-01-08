@@ -5,17 +5,11 @@ export const getTranslation = async <T extends string>(
   namespace: string,
 ) => {
   const t = await getTranslations(namespace)
-  const result = {} as Record<(typeof arr)[number], string>
+  const result = {} as Record<T, string>
 
   arr.forEach((item) => {
     result[item] = t(item)
   })
 
   return result
-}
-
-export const translation = async (namespace: string) => {
-  const t = await getTranslations(namespace)
-
-  return t
 }

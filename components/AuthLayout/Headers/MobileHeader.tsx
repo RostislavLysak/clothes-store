@@ -11,12 +11,10 @@ import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
 import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 interface IHeaderProps {
-  t: {
-    logout: string
-    profile: string
-  }
+  t: THeader
   categories: TCategory[]
   profile: TUser
   show: boolean

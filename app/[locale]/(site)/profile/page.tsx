@@ -7,11 +7,12 @@ import Routes from '@/routes'
 import * as api from '@/services/server'
 
 import View from './view'
+import { translationSubKeys } from '@/plugins/ui/i18n/translations'
 
 const Page = async () => {
   try {
-    const data = ['firstName', 'lastName', 'button'] as const
-    const t = await getTranslation(data, 'Profile.form')
+    const subKeys = translationSubKeys.profilePage
+    const t = await getTranslation(subKeys, 'Profile.form')
 
     const user = await api.user.getMe()
     return <View t={t} data={user} />

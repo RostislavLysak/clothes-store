@@ -12,15 +12,10 @@ import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
 import Routes from '@/routes'
 import { validate } from '@/validation'
+import { TRegisterPage } from '@/plugins/ui/i18n/translations'
 
 type ViewProps = {
-  t: {
-    button: string
-    email: string
-    firstName: string
-    lastName: string
-    password: string
-  }
+  t: TRegisterPage
 }
 
 const View = ({ t }: ViewProps) => {

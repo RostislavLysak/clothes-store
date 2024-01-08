@@ -11,13 +11,10 @@ import useForm from '@/hooks/useForm'
 import { TUser } from '@/plugins/types/requests'
 import * as api from '@/services/client'
 import { validate } from '@/validation'
+import { TProfilePage } from '@/plugins/ui/i18n/translations'
 
 interface ViewProps {
-  t: {
-    button: string
-    firstName: string
-    lastName: string
-  }
+  t: TProfilePage
   data: TUser
 }
 

@@ -8,6 +8,7 @@ import Routes from '@/routes'
 import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { DesktopHeader } from './Headers/DesktopHeader'
 import { MobileHeader } from './Headers/MobileHeader'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 const navlinks = [
   {
@@ -16,10 +17,7 @@ const navlinks = [
 ]
 
 interface AuthLayoutProps extends React.PropsWithChildren {
-  t: {
-    logout: string
-    profile: string
-  }
+  t: THeader
   categories: TCategory[]
   profile: TUser
 }
