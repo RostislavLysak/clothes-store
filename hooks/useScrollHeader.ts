@@ -7,9 +7,9 @@ const useScrollHeader = () => {
   useEffect(() => {
     const controlNavbar = () => {
       const positiveWindow = window.scrollY < 0 ? 0 : window.scrollY
-        setShow(!(positiveWindow > lastScrollY.current))
+      setShow(!(positiveWindow > lastScrollY.current))
 
-        lastScrollY.current = positiveWindow
+      lastScrollY.current = positiveWindow
     }
 
     window.addEventListener('scroll', controlNavbar)

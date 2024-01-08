@@ -1,0 +1,73 @@
+{
+  "Login": {
+    "form": {
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "button": "Login"
+    }
+  },
+  "Register": {
+    "form": {
+      "firstName": {
+        "label": "First Name"
+      },
+      "lastName": {
+        "label": "Last Name"
+      },
+      "email": {
+        "label": "Email"
+      },
+      "password": {
+        "label": "Password"
+      },
+      "button": "Register"
+    }
+  },
+  "Header": {
+    "navbar": {
+      "profile": "Profile",
+      "logout": "Logout"
+    }
+  },
+  "UnAuthHeader": {
+    "navbar": {
+      "signIn": "Sign In",
+      "signUp": "Sign Up"
+    }
+  },
+  "Profile": {
+    "form": {
+      "firstName": {
+        "label": "First Name"
+      },
+      "lastName": {
+        "label": "Last Name"
+      },
+      "button": "Change"
+    }
+  },
+  "Validation": {
+    "firstName": {
+      "required": "First Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "lastName": {
+      "required": "Last Name is required",
+      "min": "Min 3",
+      "max": "Max 12"
+    },
+    "email": {
+      "required": "Email is required",
+      "min": "Min 6"
+    },
+    "password": {
+      "required": "Password is required",
+      "min": "Min 6"
+    }
+  }
+}

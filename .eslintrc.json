@@ -41,9 +41,10 @@
       "error",
       {
         "type": "line-length",
-        "groups": ["shorthand", "unknown", "multiline", "callback"],
+        "groups": ["key", "shorthand", "unknown", "multiline", "callback"],
         "custom-groups": {
-          "callback": "on*"
+          "callback": "on*",
+          "key": "key"
         }
       }
     ],
