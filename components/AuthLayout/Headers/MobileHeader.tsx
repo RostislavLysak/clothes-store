@@ -11,14 +11,21 @@ import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
 import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 interface IHeaderProps {
+  t: THeader
   categories: TCategory[]
   profile: TUser
   show: boolean
 }
 
-export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
+export const MobileHeader = ({
+  t,
+  show,
+  profile,
+  categories,
+}: IHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -85,7 +92,7 @@ export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
           <LanguageToggle onClose={() => setIsOpen(false)} />
         </div>
       </section>
-      <Profile profile={profile} />
+      <Profile t={t} profile={profile} />
     </header>
   )
 }

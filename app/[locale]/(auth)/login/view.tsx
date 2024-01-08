@@ -3,16 +3,19 @@
 import { useState } from 'react'
 
 import { signIn } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import Button from '@/components/Button/Button'
 import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
 import { validate } from '@/validation'
+import { TLoginPage } from '@/plugins/ui/i18n/translations'
 
-const View = () => {
-  const t = useTranslations('Login.form')
+type ViewProps = {
+  t: TLoginPage
+}
+
+const View = ({ t }: ViewProps) => {
   const router = useRouter()
   const [err, setErr] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -30,14 +33,14 @@ const View = () => {
 
   const fields: TField[] = [
     {
-      label: t('email.label'),
+      label: t.email,
       ...register('email'),
       disabled: isLoading,
       disabledAnimated: true,
       helperText: errors['email'],
     },
     {
-      label: t('password.label'),
+      label: t.password,
       ...register('password'),
       type: 'password',
       disabled: isLoading,
@@ -67,7 +70,7 @@ const View = () => {
         onSubmit={submit(handleSubmit)}
       >
         <Button type='submit' loading={isLoading} disabled={isLoading}>
-          {t('button')}
+          {t.button}
         </Button>
       </FormControl>
     </>

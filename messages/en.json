@@ -1,52 +1,32 @@
 {
   "Login": {
     "form": {
-      "email": {
-        "label": "Email"
-      },
-      "password": {
-        "label": "Password"
-      },
+      "email": "Email",
+      "password": "Password",
       "button": "Login"
     }
   },
   "Register": {
     "form": {
-      "firstName": {
-        "label": "First Name"
-      },
-      "lastName": {
-        "label": "Last Name"
-      },
-      "email": {
-        "label": "Email"
-      },
-      "password": {
-        "label": "Password"
-      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
       "button": "Register"
     }
   },
   "Header": {
-    "navbar": {
-      "profile": "Profile",
-      "logout": "Logout"
-    }
+    "profile": "Profile",
+    "logout": "Logout"
   },
   "UnAuthHeader": {
-    "navbar": {
-      "signIn": "Sign In",
-      "signUp": "Sign Up"
-    }
+    "signIn": "Sign In",
+    "signUp": "Sign Up"
   },
   "Profile": {
     "form": {
-      "firstName": {
-        "label": "First Name"
-      },
-      "lastName": {
-        "label": "Last Name"
-      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
       "button": "Change"
     }
   },

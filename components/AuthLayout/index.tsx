@@ -8,6 +8,7 @@ import Routes from '@/routes'
 import { CategoriesList } from '../CategoriesList/CategoriesList'
 import { DesktopHeader } from './Headers/DesktopHeader'
 import { MobileHeader } from './Headers/MobileHeader'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 const navlinks = [
   {
@@ -16,11 +17,13 @@ const navlinks = [
 ]
 
 interface AuthLayoutProps extends React.PropsWithChildren {
+  t: THeader
   categories: TCategory[]
   profile: TUser
 }
 
 export default function AuthLayout({
+  t,
   profile,
   children,
   categories,
@@ -31,9 +34,19 @@ export default function AuthLayout({
   return (
     <>
       {isPageWide ? (
-        <DesktopHeader show={show} profile={profile} navlinks={navlinks} />
+        <DesktopHeader
+          t={t}
+          show={show}
+          profile={profile}
+          navlinks={navlinks}
+        />
       ) : (
-        <MobileHeader show={show} profile={profile} categories={categories} />
+        <MobileHeader
+          t={t}
+          show={show}
+          profile={profile}
+          categories={categories}
+        />
       )}
       <main className='mt-24'>
         {isPageWide ? <CategoriesList categories={categories} /> : null}

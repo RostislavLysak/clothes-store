@@ -1,7 +1,8 @@
+'use client'
+
 import { useRef, useState } from 'react'
 
 import { signOut } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,8 +13,10 @@ import Routes from '@/routes'
 
 import Button from '../Button/Button'
 import MenuPopover from '../MenuPopover/MenuPopover'
+import { THeader } from '@/plugins/ui/i18n/translations'
 
 type ProfileProps = {
+  t: THeader
   profile: TUser
 }
 
@@ -22,16 +25,15 @@ type TNavlink = {
   title: string
 }
 
-const Profile = ({ profile }: ProfileProps) => {
-  const t = useTranslations('Header')
+const Profile = ({ t, profile }: ProfileProps) => {
   const [open, setOpen] = useState<boolean>(false)
   const { img } = profile
   const ref = useRef(null)
 
   const menu: TNavlink[] = [
     {
+      title: t.profile,
       href: Routes.profile,
-      title: t('navbar.profile'),
     },
   ]
 
@@ -76,7 +78,7 @@ const Profile = ({ profile }: ProfileProps) => {
             setOpen((prev) => !prev)
           }}
         >
-          {t('navbar.logout')}
+          {t.logout}
         </Button>
       </MenuPopover>
     </div>
