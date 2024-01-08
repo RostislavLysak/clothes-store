@@ -4,7 +4,6 @@ import Routes from './routes'
 import createMiddleware from 'next-intl/middleware'
 import config from './config'
 
-
 const { locales, defaultLocale } = config
 
 const UNAUTHORIZED_PATHS = [`/${Routes.login}`, `/${Routes.register}`]

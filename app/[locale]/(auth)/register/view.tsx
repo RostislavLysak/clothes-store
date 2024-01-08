@@ -3,6 +3,7 @@
 import { useState } from 'react'
 
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import axios from 'axios'
@@ -12,7 +13,6 @@ import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
 import Routes from '@/routes'
 import { validate } from '@/validation'
-import { useTranslations } from 'next-intl'
 
 const View = () => {
   const t = useTranslations('Register.form')
@@ -28,10 +28,10 @@ const View = () => {
       firstName: '',
     },
     {
-      firstName: validate('firstName'),
-      lastName: validate('lastName'),
       email: validate('email'),
+      lastName: validate('lastName'),
       password: validate('password'),
+      firstName: validate('firstName'),
     },
   )
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
@@ -8,7 +9,6 @@ import Routes from '@/routes'
 
 import Button from '../Button/Button'
 import LanguageToggle from '../LanguageToggle/LanguageToggle'
-import { useTranslations } from 'next-intl'
 
 export default function UnauthorizedhLayout({
   children,

@@ -1,16 +1,17 @@
 import { useRef, useState } from 'react'
 
 import { signOut } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import Link from 'next/link'
 
+import { useClickAway } from '@/hooks/useClickAway'
 import { TUser } from '@/plugins/types/requests'
 import ProfileIcon from '@/plugins/ui/icons/ProfileIcon'
 import Routes from '@/routes'
 
 import Button from '../Button/Button'
-import { useClickAway } from '@/hooks/useClickAway'
-import { useTranslations } from 'next-intl'
+import MenuPopover from '../MenuPopover/MenuPopover'
 
 type ProfileProps = {
   profile: TUser
@@ -29,18 +30,18 @@ const Profile = ({ profile }: ProfileProps) => {
 
   const menu: TNavlink[] = [
     {
-      title: t('navbar.profile'),
       href: Routes.profile,
+      title: t('navbar.profile'),
     },
   ]
 
   useClickAway(setOpen, ref)
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className='relative'>
       <Button
         type='button'
-        className={`relative ${!img && 'p-2'} border rounded-md cursor-pointer`}
+        className={`${!img && 'p-2'} border rounded-md cursor-pointer`}
         onClick={() => setOpen((prev) => !prev)}
       >
         {!img ? (
@@ -55,11 +56,8 @@ const Profile = ({ profile }: ProfileProps) => {
           />
         )}
       </Button>
-      <div
-        className={`absolute right-4 z-10 backdrop-filter backdrop-blur-[20px] bg-slate-100/40 mt-6 border rounded-md  ${
-          open ? 'block' : 'hidden'
-        }`}
-      >
+
+      <MenuPopover show={open} position='right-0'>
         {menu.map((item) => (
           <Link
             key={item.title}
@@ -80,7 +78,7 @@ const Profile = ({ profile }: ProfileProps) => {
         >
           {t('navbar.logout')}
         </Button>
-      </div>
+      </MenuPopover>
     </div>
   )
 }

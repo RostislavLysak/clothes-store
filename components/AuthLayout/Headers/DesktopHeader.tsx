@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 import Profile from '@/components/Profile/Profile'
 import { TUser } from '@/plugins/types/requests'
-import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 
 type TNavlink = {
   href: string

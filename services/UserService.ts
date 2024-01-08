@@ -3,7 +3,7 @@ import BaseService from './BaseService'
 
 class UserService extends BaseService {
   async getMe() {
-    const user = await this.httpClient.get(`/user`, {
+    const user = await this.httpClient.get('/user', {
       headers: await this.context(),
     })
 
@@ -11,7 +11,7 @@ class UserService extends BaseService {
   }
 
   async updateProfile(values: TUpdateProfile) {
-    const user = await this.httpClient.post(`/user/updateprofile`, {
+    const user = await this.httpClient.post('/user/updateprofile', {
       headers: await this.context(),
       ...values,
     })
@@ -20,9 +20,9 @@ class UserService extends BaseService {
   }
 
   async updateImage(values: TUpdateImage) {
-    const user = await this.httpClient.post(`/user/updateimage`, {
+    const user = await this.httpClient.post('/user/updateimage', {
       headers: await this.context(),
-      ...values
+      ...values,
     })
 
     return user.data as TUser

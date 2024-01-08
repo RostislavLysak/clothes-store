@@ -6,11 +6,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { CategoriesList } from '@/components/CategoriesList/CategoriesList'
+import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
 import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
-import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 
 interface IHeaderProps {
   categories: TCategory[]

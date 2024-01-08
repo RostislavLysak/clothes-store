@@ -3,13 +3,14 @@ import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
+import { useClickAway } from '@/hooks/useClickAway'
 import AddBoxIcon from '@/plugins/ui/icons/AddBoxIcon'
 import ProfileIcon from '@/plugins/ui/icons/ProfileIcon'
 import * as api from '@/services/client'
 import { readAsDataURL } from '@/utils'
 
 import Button from '../Button/Button'
-import { useClickAway } from '@/hooks/useClickAway'
+import MenuPopover from '../MenuPopover/MenuPopover'
 
 type ProfileProps = {
   img: string
@@ -78,11 +79,8 @@ const ImageChanger = ({ img }: ProfileProps) => {
       >
         <AddBoxIcon />
       </Button>
-      <div
-        className={`absolute w-fit left-0 z-10 backdrop-filter backdrop-blur-[20px] bg-slate-100/40 mt-6 border rounded-md  ${
-          open ? 'block' : 'hidden'
-        }`}
-      >
+
+      <MenuPopover show={open}>
         {menu.map((item) => (
           <Button
             key={item.label}
@@ -94,13 +92,13 @@ const ImageChanger = ({ img }: ProfileProps) => {
           </Button>
         ))}
         <input
-          ref={inputRef}
           type='file'
+          ref={inputRef}
           className='hidden'
           accept='image/png, image/jpeg'
           onChange={handleChangeFile}
         />
-      </div>
+      </MenuPopover>
     </div>
   )
 }

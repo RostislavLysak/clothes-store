@@ -4,9 +4,13 @@ import UserService from '@/ApiService/UserService'
 
 export const POST = async (req: NextRequest) => {
   try {
-    const { lastName, firstName, headers } = await req.json()
+    const { headers, lastName, firstName } = await req.json()
 
-    const user = await UserService.updateProfile({ lastName, firstName, accessToken: headers?.authorization })
+    const user = await UserService.updateProfile({
+      lastName,
+      firstName,
+      accessToken: headers?.authorization,
+    })
 
     return NextResponse.json(user)
   } catch (e: any) {

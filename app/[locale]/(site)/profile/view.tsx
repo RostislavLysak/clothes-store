@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import Button from '@/components/Button/Button'
@@ -11,7 +12,6 @@ import useForm from '@/hooks/useForm'
 import { TUser } from '@/plugins/types/requests'
 import * as api from '@/services/client'
 import { validate } from '@/validation'
-import { useTranslations } from 'next-intl'
 
 interface ViewProps {
   data: TUser
@@ -25,8 +25,8 @@ const View = ({ data }: ViewProps) => {
   const { values, submit, errors, register } = useForm(
     { lastName, firstName },
     {
-      firstName: validate('firstName'),
       lastName: validate('lastName'),
+      firstName: validate('firstName'),
     },
   )
 

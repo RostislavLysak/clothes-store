@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
+import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { notFound } from 'next/navigation'
 
 import { Inter } from 'next/font/google'
 
 import NextAuthProvider from '@/components/NextAuthProvider'
+import config from '@/config'
 
 import './globals.css'
-import config from '@/config'
-import { NextIntlClientProvider, useMessages } from 'next-intl'
 
 const inter = Inter({ subsets: ['latin'] })
 const { locales } = config

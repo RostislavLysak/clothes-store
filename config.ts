@@ -7,7 +7,7 @@ const config = {
   REFRESH_TOKEN_EXPIRES_IN: '10d',
   REFRESH_TOKEN_ALGORITHM: 'HS512',
   locales: ['en', 'ua'],
-  defaultLocale: 'en'
+  defaultLocale: 'en',
 } as const
 
 export default config

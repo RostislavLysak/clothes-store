@@ -3,13 +3,13 @@
 import { useState } from 'react'
 
 import { signIn } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import Button from '@/components/Button/Button'
 import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
 import { validate } from '@/validation'
-import { useTranslations } from 'next-intl'
 
 const View = () => {
   const t = useTranslations('Login.form')

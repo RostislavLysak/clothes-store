@@ -3,7 +3,7 @@ import BaseService from './BaseService'
 
 class ShopService extends BaseService {
   async getProducts() {
-    const products = await this.httpClient.get(`/shop/products`)
+    const products = await this.httpClient.get('/shop/products')
 
     return products.data as TProduct[]
   }
@@ -15,7 +15,7 @@ class ShopService extends BaseService {
   }
 
   async getUniqueCateries() {
-    const categories = await this.httpClient.get(`/shop/categories`)
+    const categories = await this.httpClient.get('/shop/categories')
 
     return categories.data as TCategory[]
   }
