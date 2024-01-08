@@ -16,11 +16,16 @@ const navlinks = [
 ]
 
 interface AuthLayoutProps extends React.PropsWithChildren {
+  t: {
+    logout: string
+    profile: string
+  }
   categories: TCategory[]
   profile: TUser
 }
 
 export default function AuthLayout({
+  t,
   profile,
   children,
   categories,
@@ -31,9 +36,19 @@ export default function AuthLayout({
   return (
     <>
       {isPageWide ? (
-        <DesktopHeader show={show} profile={profile} navlinks={navlinks} />
+        <DesktopHeader
+          t={t}
+          show={show}
+          profile={profile}
+          navlinks={navlinks}
+        />
       ) : (
-        <MobileHeader show={show} profile={profile} categories={categories} />
+        <MobileHeader
+          t={t}
+          show={show}
+          profile={profile}
+          categories={categories}
+        />
       )}
       <main className='mt-24'>
         {isPageWide ? <CategoriesList categories={categories} /> : null}

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 
-import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import Button from '@/components/Button/Button'
@@ -14,11 +13,15 @@ import * as api from '@/services/client'
 import { validate } from '@/validation'
 
 interface ViewProps {
+  t: {
+    button: string
+    firstName: string
+    lastName: string
+  }
   data: TUser
 }
 
-const View = ({ data }: ViewProps) => {
-  const t = useTranslations('Profile.form')
+const View = ({ t, data }: ViewProps) => {
   const { refresh } = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const { img, lastName, firstName } = data
@@ -32,14 +35,14 @@ const View = ({ data }: ViewProps) => {
 
   const fields: TField[] = [
     {
-      label: t('firstName.label'),
+      label: t.firstName,
       ...register('firstName'),
       disabled: isLoading,
       disabledAnimated: true,
       helperText: errors['firstName'],
     },
     {
-      label: t('lastName.label'),
+      label: t.lastName,
       ...register('lastName'),
       disabled: isLoading,
       disabledAnimated: true,
@@ -66,7 +69,7 @@ const View = ({ data }: ViewProps) => {
           onSubmit={submit(handleSubmit)}
         >
           <Button type='submit' loading={isLoading} disabled={isLoading}>
-            {t('button')}
+            {t.button}
           </Button>
         </FormControl>
       </div>

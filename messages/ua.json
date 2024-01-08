@@ -1,53 +1,33 @@
 {
   "Login": {
     "form": {
-      "email": {
-        "label": "Email"
-      },
-      "password": {
-        "label": "Пароль"
-      },
+      "email": "Email",
+      "password": "Пароль",
       "button": "Увійти"
     }
   },
   "Register": {
     "form": {
-      "firstName": {
-        "label": "Ім'я"
-      },
-      "lastName": {
-        "label": "Прізвище"
-      },
-      "email": {
-        "label": "Email"
-      },
-      "password": {
-        "label": "Пароль"
-      },
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
+      "email": "Email",
+      "password": "Пароль",
       "button": "Зареєструватися"
     }
   },
 
   "Header": {
-    "navbar": {
-      "profile": "Профіль",
-      "logout": "Вийти"
-    }
+    "profile": "Профіль",
+    "logout": "Вийти"
   },
   "UnAuthHeader": {
-    "navbar": {
-      "signIn": "Увійти",
-      "signUp": "Реєстрація"
-    }
+    "signIn": "Увійти",
+    "signUp": "Реєстрація"
   },
   "Profile": {
     "form": {
-      "firstName": {
-        "label": "Ім'я"
-      },
-      "lastName": {
-        "label": "Прізвище"
-      },
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
       "button": "Змінити"
     }
   },

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 
 import { signIn } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 
 import axios from 'axios'
@@ -14,8 +13,17 @@ import useForm from '@/hooks/useForm'
 import Routes from '@/routes'
 import { validate } from '@/validation'
 
-const View = () => {
-  const t = useTranslations('Register.form')
+type ViewProps = {
+  t: {
+    button: string
+    email: string
+    firstName: string
+    lastName: string
+    password: string
+  }
+}
+
+const View = ({ t }: ViewProps) => {
   const router = useRouter()
   const [err, setErr] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -37,28 +45,28 @@ const View = () => {
 
   const fields: TField[] = [
     {
-      label: t('firstName.label'),
+      label: t.firstName,
       ...register('firstName'),
       disabled: isLoading,
       disabledAnimated: true,
       helperText: errors['firstName'],
     },
     {
-      label: t('lastName.label'),
+      label: t.lastName,
       ...register('lastName'),
       disabled: isLoading,
       disabledAnimated: true,
       helperText: errors['lastName'],
     },
     {
-      label: t('email.label'),
+      label: t.email,
       ...register('email'),
       disabled: isLoading,
       disabledAnimated: true,
       helperText: errors['email'],
     },
     {
-      label: t('password.label'),
+      label: t.password,
       ...register('password'),
       type: 'password',
       disabled: isLoading,
@@ -95,7 +103,7 @@ const View = () => {
         onSubmit={submit(handleSubmit)}
       >
         <Button type='submit' loading={isLoading} disabled={isLoading}>
-          {t('button')}
+          {t.button}
         </Button>
       </FormControl>
     </>

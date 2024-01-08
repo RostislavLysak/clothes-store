@@ -13,12 +13,21 @@ import { TCategory, TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
 
 interface IHeaderProps {
+  t: {
+    logout: string
+    profile: string
+  }
   categories: TCategory[]
   profile: TUser
   show: boolean
 }
 
-export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
+export const MobileHeader = ({
+  t,
+  show,
+  profile,
+  categories,
+}: IHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -85,7 +94,7 @@ export const MobileHeader = ({ show, profile, categories }: IHeaderProps) => {
           <LanguageToggle onClose={() => setIsOpen(false)} />
         </div>
       </section>
-      <Profile profile={profile} />
+      <Profile t={t} profile={profile} />
     </header>
   )
 }

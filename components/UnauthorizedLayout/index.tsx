@@ -1,19 +1,25 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 
 import useScrollHeader from '@/hooks/useScrollHeader'
+import { useRouter } from '@/navigation'
 import Routes from '@/routes'
 
 import Button from '../Button/Button'
 import LanguageToggle from '../LanguageToggle/LanguageToggle'
 
+interface UnauthorizedhLayoutProps extends React.PropsWithChildren {
+  t: {
+    signIn: string
+    signUp: string
+  }
+}
+
 export default function UnauthorizedhLayout({
+  t,
   children,
-}: React.PropsWithChildren) {
-  const t = useTranslations('UnAuthHeader')
+}: UnauthorizedhLayoutProps) {
   const { show } = useScrollHeader()
 
   const router = useRouter()
@@ -36,10 +42,10 @@ export default function UnauthorizedhLayout({
         <div className='flex [&>button]:mx-1'>
           <LanguageToggle />
           <Button size='sm' onClick={() => router.push(`/${Routes.login}`)}>
-            {t('navbar.signIn')}
+            {t.signIn}
           </Button>
           <Button size='sm' onClick={() => router.push(`/${Routes.register}`)}>
-            {t('navbar.signUp')}
+            {t.signUp}
           </Button>
         </div>
       </header>
