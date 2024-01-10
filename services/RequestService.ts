@@ -24,7 +24,11 @@ export class RequestService {
 
     const baseURL = 'http://localhost:3001'
     const session: any = await getServerSession(options).catch(() => null)
-    const accessToken = session.accessToken
+    const {accessToken, user: {id}} = session
+
+    if(id) {
+      object.headers['userid'] = id
+    }
 
     if (accessToken) {
       object.headers['authorization'] = `Bearer ${accessToken}`
