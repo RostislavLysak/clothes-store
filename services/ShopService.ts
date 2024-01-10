@@ -1,5 +1,5 @@
 import { TCategory, TProduct } from '@/plugins/types/requests'
-import BaseService from './BaseService'
+// import BaseService from './BaseService'
 import { RequestService } from './RequestService'
 
 // class ShopService extends BaseService {

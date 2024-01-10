@@ -11,8 +11,8 @@ import { readAsDataURL } from '@/utils'
 
 import Button from '../Button/Button'
 import MenuPopover from '../MenuPopover/MenuPopover'
+import ClientUserService from '@/clientServices/ClientUserService'
 // import axios from 'axios'
-import ClientService from '@/services/ClientService'
 
 type ProfileProps = {
   img: string
@@ -43,7 +43,7 @@ const ImageChanger = ({ img }: ProfileProps) => {
       action: async () => {
         setOpen((prev) => !prev)
         // await api.user.updateImage({ img: '' })
-        await ClientService.updateImage('')
+        await ClientUserService.updateImage('')
         refresh()
       },
     },
@@ -57,7 +57,7 @@ const ImageChanger = ({ img }: ProfileProps) => {
       const base64 = (await readAsDataURL(file)) as string
 
       // await api.user.updateImage({ img: base64 })
-      await ClientService.updateImage(base64)
+      await ClientUserService.updateImage(base64)
 
       refresh()
     }

@@ -1,5 +1,5 @@
 import { TUpdateImage, TUpdateProfile, TUser } from '@/plugins/types/requests'
-import BaseService from './BaseService'
+// import BaseService from './BaseService'
 // import UserService from '@/ApiService/UserService'
 import { IRequestService, RequestService } from './RequestService'
 
