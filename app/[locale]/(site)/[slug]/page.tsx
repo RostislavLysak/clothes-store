@@ -1,4 +1,5 @@
 import { Product } from '@/components/Product/Product'
+import ShopService from '@/services/ShopService'
 import * as api from '@/services/server'
 
 type CatalogProps = {
@@ -11,7 +12,8 @@ const Catalog = async ({ params }: CatalogProps) => {
   const { slug } = params
 
   try {
-    const products = await api.shop.getByCategoryProducts(slug)
+    // const products = await api.shop.getByCategoryProducts(slug)
+    const products = await ShopService.getByCategoryProducts(slug)
 
     return (
       <div className='flex flex-wrap justify-center m-auto w-full'>

@@ -9,9 +9,11 @@ import FormControl, { TField } from '@/components/FormControl/FormControl'
 import ImageChanger from '@/components/ImageChanger/ImageChanger'
 import useForm from '@/hooks/useForm'
 import { TUser } from '@/plugins/types/requests'
-import * as api from '@/services/client'
+// import * as api from '@/services/client'
 import { validate } from '@/validation'
 import { TProfilePage } from '@/plugins/ui/i18n/translations'
+// import axios from 'axios'
+import ClientService from '@/services/ClientService'
 
 interface ViewProps {
   t: TProfilePage
@@ -49,9 +51,11 @@ const View = ({ t, data }: ViewProps) => {
 
   const handleSubmit = async () => {
     setIsLoading(true)
-    await api.user.updateProfile({
-      ...values,
-    })
+    // await api.user.updateProfile({
+    //   ...values,
+    // })
+    // await axios.post('/api/user/updateprofile', values)
+    await ClientService.updateProfile(values)
     refresh()
     setIsLoading(false)
   }

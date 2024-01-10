@@ -3,8 +3,10 @@ import { redirect } from 'next/navigation'
 import AuthLayout from '@/components/AuthLayout'
 import { getTranslation } from '@/plugins/ui/i18n'
 import Routes from '@/routes'
-import * as api from '@/services/server'
+// import * as api from '@/services/server'
 import { translationSubKeys } from '@/plugins/ui/i18n/translations'
+import UserService from '@/services/UserService'
+import ShopService from '@/services/ShopService'
 
 export default async function Layout({
   children,
@@ -15,8 +17,10 @@ export default async function Layout({
     const subKeys = translationSubKeys.header
     const t = await getTranslation(subKeys, 'Header')
 
-    const categories = await api.shop.getUniqueCateries()
-    const user = await api.user.getMe()
+    // const categories = await api.shop.getUniqueCateries()
+    const categories = await ShopService.getUniqueCateries()
+    // const user = await api.user.getMe()
+    const user = await UserService.getMe()
     return (
       <AuthLayout t={t} profile={user} categories={categories}>
         {children}

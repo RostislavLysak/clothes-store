@@ -20,5 +20,5 @@ const context = async () => {
   return headers
 }
 
-export const shop = new ShopService(context)
-export const user = new UserService(context)
+// export const shop = new ShopService(context)
+// export const user = new UserService(context)

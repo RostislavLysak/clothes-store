@@ -5,14 +5,15 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-import axios from 'axios'
+// import axios from 'axios'
 
 import Button from '@/components/Button/Button'
 import FormControl, { TField } from '@/components/FormControl/FormControl'
 import useForm from '@/hooks/useForm'
-import Routes from '@/routes'
+// import Routes from '@/routes'
 import { validate } from '@/validation'
 import { TRegisterPage } from '@/plugins/ui/i18n/translations'
+import ClientService from '@/services/ClientService'
 
 type ViewProps = {
   t: TRegisterPage
@@ -73,7 +74,8 @@ const View = ({ t }: ViewProps) => {
   const handleSubmit = async () => {
     try {
       setIsLoading(true)
-      await axios.post(`/api/${Routes.register}`, { ...values })
+      // await axios.post(`/api/${Routes.register}`, { ...values })
+      await ClientService.register(values)
 
       await signIn('credentials', {
         redirect: false,
