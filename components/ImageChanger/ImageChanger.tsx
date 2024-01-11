@@ -6,13 +6,11 @@ import { useRouter } from 'next/navigation'
 import { useClickAway } from '@/hooks/useClickAway'
 import AddBoxIcon from '@/plugins/ui/icons/AddBoxIcon'
 import ProfileIcon from '@/plugins/ui/icons/ProfileIcon'
-// import * as api from '@/services/client'
 import { readAsDataURL } from '@/utils'
 
 import Button from '../Button/Button'
 import MenuPopover from '../MenuPopover/MenuPopover'
 import ClientUserService from '@/clientServices/ClientUserService'
-// import axios from 'axios'
 
 type ProfileProps = {
   img: string
@@ -42,8 +40,9 @@ const ImageChanger = ({ img }: ProfileProps) => {
       label: 'Remove a photo',
       action: async () => {
         setOpen((prev) => !prev)
-        // await api.user.updateImage({ img: '' })
+
         await ClientUserService.updateImage('')
+
         refresh()
       },
     },
@@ -56,7 +55,6 @@ const ImageChanger = ({ img }: ProfileProps) => {
     if (file) {
       const base64 = (await readAsDataURL(file)) as string
 
-      // await api.user.updateImage({ img: base64 })
       await ClientUserService.updateImage(base64)
 
       refresh()

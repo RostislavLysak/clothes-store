@@ -15,7 +15,6 @@ export const POST = async (req: NextRequest) => {
     }
 
     const user = await UserService.updateImage(options)
-    console.log('BACK', user)
 
     return NextResponse.json(user)
   } catch (e: any) {

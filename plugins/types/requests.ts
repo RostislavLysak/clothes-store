@@ -18,5 +18,3 @@ export interface TUser {
 }
 
 export interface TUpdateProfile extends Pick<TUser, 'firstName' | 'lastName'> {}
-
-export interface TUpdateImage extends Pick<TUser, 'img'> {}

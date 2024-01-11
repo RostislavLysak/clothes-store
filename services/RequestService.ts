@@ -22,7 +22,7 @@ export class RequestService {
 
     Object.keys(body).length ? (object.body = JSON.stringify(body)) : null
 
-    const baseURL = 'http://localhost:3001'
+    const baseURL = process.env.NEST_API_URL
     const session: any = await getServerSession(options).catch(() => null)
     const {accessToken, user: {id}} = session
 
