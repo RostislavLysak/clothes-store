@@ -1,4 +1,4 @@
-import { TCategory, TProduct } from '@/plugins/types/requests'
+import { TProduct } from '@/plugins/types/requests'
 import { RequestService } from './RequestService'
 
 class ShopService {
@@ -8,16 +8,28 @@ class ShopService {
     return products as TProduct[]
   }
 
-  async getByCategoryProducts(category: string) {
-    const products = await RequestService.call(`/products/${category}`, {})
+  async getProductBySlug(slug: string) {
+    const product = await RequestService.call(`/products/product/${slug}`, {})
+
+    return product as TProduct
+  }
+
+  async getProductsBy(type: string) {
+    const products = await RequestService.call(`/products/${type}`, {})
 
     return products as TProduct[]
   }
 
-  async getUniqueCateries() {
+  async getUniqueCategories() {
     const categories = await RequestService.call('/products/categories', {})
 
-    return categories as TCategory[]
+    return categories as string[]
+  }
+
+  async getUniqueBrands() {
+    const brands = await RequestService.call('/products/brands', {})
+
+    return brands as string[]
   }
 }
 

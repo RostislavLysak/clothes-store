@@ -2,10 +2,10 @@
 
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import useScrollHeader from '@/hooks/useScrollHeader'
-import { TCategory, TUser } from '@/plugins/types/requests'
+import { TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
 
-import { CategoriesList } from '../CategoriesList/CategoriesList'
+import { Navbar } from '../Navbar/Navbar'
 import { DesktopHeader } from './Headers/DesktopHeader'
 import { MobileHeader } from './Headers/MobileHeader'
 import { THeader } from '@/plugins/ui/i18n/translations'
@@ -16,9 +16,14 @@ const navlinks = [
   },
 ]
 
+type TNavbar = {
+  title: string
+  type: string[]
+}
+
 interface AuthLayoutProps extends React.PropsWithChildren {
   t: THeader
-  categories: TCategory[]
+  navbar: TNavbar[]
   profile: TUser
 }
 
@@ -26,7 +31,7 @@ export default function AuthLayout({
   t,
   profile,
   children,
-  categories,
+  navbar,
 }: AuthLayoutProps) {
   const { show } = useScrollHeader()
   const isPageWide = useMediaQuery('(min-width: 900px')
@@ -41,15 +46,10 @@ export default function AuthLayout({
           navlinks={navlinks}
         />
       ) : (
-        <MobileHeader
-          t={t}
-          show={show}
-          profile={profile}
-          categories={categories}
-        />
+        <MobileHeader t={t} show={show} profile={profile} navbar={navbar} />
       )}
       <main className='mt-24'>
-        {isPageWide ? <CategoriesList categories={categories} /> : null}
+        {isPageWide ? <Navbar navbar={navbar} /> : null}
         {children}
       </main>
     </>

@@ -5,27 +5,27 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { CategoriesList } from '@/components/CategoriesList/CategoriesList'
+import { Navbar } from '@/components/Navbar/Navbar'
 import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 import Profile from '@/components/Profile/Profile'
 import { useDisableScroll } from '@/hooks/useDisableScroll'
-import { TCategory, TUser } from '@/plugins/types/requests'
+import { TUser } from '@/plugins/types/requests'
 import Routes from '@/routes'
 import { THeader } from '@/plugins/ui/i18n/translations'
 
+type TNavbar = {
+  title: string
+  type: string[]
+}
+
 interface IHeaderProps {
   t: THeader
-  categories: TCategory[]
+  navbar: TNavbar[]
   profile: TUser
   show: boolean
 }
 
-export const MobileHeader = ({
-  t,
-  show,
-  profile,
-  categories,
-}: IHeaderProps) => {
+export const MobileHeader = ({ t, show, profile, navbar }: IHeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleClick = () => {
@@ -85,10 +85,7 @@ export const MobileHeader = ({
               className='dark:invert m-4 w-[100px] h-[24px]'
             ></Image>
           </Link>
-          <CategoriesList
-            categories={categories}
-            onClose={() => setIsOpen(false)}
-          />
+          <Navbar navbar={navbar} onClose={() => setIsOpen(false)} />
           <LanguageToggle onClose={() => setIsOpen(false)} />
         </div>
       </section>
