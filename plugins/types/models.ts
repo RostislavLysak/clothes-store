@@ -8,17 +8,6 @@ export interface IRegister extends ILogin {
   lastName: string
 }
 
-export interface IUpdateProfile {
-  firstName: string
-  lastName: string
-  accessToken: string | null
-}
-
-export interface IUpdateImage {
-  img: string
-  accessToken: string | null
-}
-
 export interface IRefreshToken {
   token: string
 }

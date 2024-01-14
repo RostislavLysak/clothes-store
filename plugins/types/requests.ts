@@ -4,9 +4,9 @@ export interface TProduct {
   id: string
   img: string
   title: string
+  slug: string
+  brand: string
 }
-
-export interface TCategory extends Pick<TProduct, 'category'> {}
 
 export interface TUser {
   id: string
@@ -18,5 +18,3 @@ export interface TUser {
 }
 
 export interface TUpdateProfile extends Pick<TUser, 'firstName' | 'lastName'> {}
-
-export interface TUpdateImage extends Pick<TUser, 'img'> {}

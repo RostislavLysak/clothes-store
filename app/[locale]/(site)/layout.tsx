@@ -16,10 +16,23 @@ export default async function Layout({
     const subKeys = translationSubKeys.header
     const t = await getTranslation(subKeys, 'Header')
 
-    const categories = await ShopService.getUniqueCateries()
+    const categories = await ShopService.getUniqueCategories()
+    const brands = await ShopService.getUniqueBrands()
+
+    const navbar = [
+      {
+        title: 'Brands',
+        type: [...brands],
+      },
+      {
+        title: 'Categories',
+        type: [...categories],
+      },
+    ]
+
     const user = await UserService.getMe()
     return (
-      <AuthLayout t={t} profile={user} categories={categories}>
+      <AuthLayout t={t} profile={user} navbar={navbar}>
         {children}
       </AuthLayout>
     )

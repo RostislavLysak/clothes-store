@@ -1,3 +1,4 @@
+import { Link } from '@/navigation'
 import { TProduct } from '@/plugins/types/requests'
 import { capitalize } from '@/utils'
 
@@ -7,7 +8,10 @@ interface ProductProps {
 
 export const Product = ({ product }: ProductProps) => {
   return (
-    <div className='flex flex-col justify-between items-center text-center w-5/12 lg:w-1/5 p-6 border border-sky-50 rounded-md mx-2 my-4'>
+    <Link
+      href={`product/${product.slug}`}
+      className='flex flex-col justify-between items-center text-center w-5/12 lg:w-1/5 p-6 border border-sky-50 rounded-md mx-2 my-4'
+    >
       <img
         src={product.img}
         alt={product.category}
@@ -24,6 +28,6 @@ export const Product = ({ product }: ProductProps) => {
           {capitalize(product.category)}
         </p>
       </div>
-    </div>
+    </Link>
   )
 }
