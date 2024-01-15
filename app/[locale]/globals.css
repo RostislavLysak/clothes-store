@@ -48,6 +48,10 @@ body::-webkit-scrollbar-thumb,
   border-radius: 8px;
 }
 
+#catalog::-webkit-scrollbar {
+  display: none;
+}
+
 /* Handle on hover */
 body::-webkit-scrollbar-thumb:hover,
 #navbar::-webkit-scrollbar-thumb:hover {

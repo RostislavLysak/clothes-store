@@ -1,4 +1,5 @@
-import ShopService from "@/services/ShopService"
+import ShopService from '@/services/ShopService'
+import View from './view'
 
 type ProductProps = {
   params: {
@@ -9,11 +10,10 @@ type ProductProps = {
 const ProductPage = async ({ params }: ProductProps) => {
   try {
     const { slug } = params
-
     const product = await ShopService.getProductBySlug(slug)
+    const catalog = await ShopService.getProductsWithout(product.category, slug)
 
-    console.log(product)
-    return <div>{slug}</div>
+    return <View product={product} catalog={catalog} />
   } catch (e) {
     return null
   }
