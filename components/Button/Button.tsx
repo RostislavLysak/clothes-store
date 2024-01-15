@@ -1,8 +1,11 @@
 type TSize = 'sm' | 'md' | 'lg'
+type TBold = 'font-normal' | 'font-medium' | 'font-semibold' | 'font-bold'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean
   size?: TSize
+  font?: TSize
+  bold?: TBold
 }
 
 const getSize = (size: TSize) => {
@@ -16,6 +19,17 @@ const getSize = (size: TSize) => {
   }
 }
 
+const getFont = (font: string) => {
+  switch (font) {
+    case 'sm':
+      return 'text-sm'
+    case 'md':
+      return 'text-base'
+    case 'lg':
+      return 'text-lg'
+  }
+}
+
 const Loader = () => {
   return (
     <div className='flex justify-center items-center backdrop-blur-md'>
@@ -24,12 +38,18 @@ const Loader = () => {
   )
 }
 
-const Button = ({ loading, size = 'md', ...props }: ButtonProps) => {
+const Button = ({
+  loading,
+  size = 'md',
+  font = 'md',
+  bold = 'font-medium',
+  ...props
+}: ButtonProps) => {
   return (
     <button
-      className={`${getSize(
-        size,
-      )} bg-transparent hover:bg-gray-950 dark:hover:bg-gray-100 hover:text-white dark:hover:text-black hover:border-white dark:hover:border-black text-black dark:text-white border border-black dark:border-gray-400 rounded-md transition-all duration-500 shadow`}
+      className={`${getSize(size)} ${getFont(
+        font,
+      )} ${bold} bg-transparent hover:bg-gray-950 dark:hover:bg-gray-100 hover:text-white dark:hover:text-black hover:border-white dark:hover:border-black text-black dark:text-white border border-black dark:border-gray-400 rounded-md transition-all duration-500 shadow`}
       {...props}
     >
       {loading ? <Loader /> : props.children}

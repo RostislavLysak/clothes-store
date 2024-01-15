@@ -18,6 +18,7 @@ model Product {
   description String
   category    String
   brand       String
+  price       Int
 }
 
 model User {

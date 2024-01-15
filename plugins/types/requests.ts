@@ -6,6 +6,7 @@ export interface TProduct {
   title: string
   slug: string
   brand: string
+  price: number
 }
 
 export interface TUser {
