@@ -48,8 +48,14 @@ export default function AuthLayout({
       ) : (
         <MobileHeader t={t} show={show} profile={profile} navbar={navbar} />
       )}
-      <main className='mt-24'>
-        {isPageWide ? <Navbar navbar={navbar} /> : null}
+      <main className='flex mt-24'>
+        {isPageWide ? (
+          <>
+            <Navbar navbar={navbar} />
+            <div className='ml-40' />
+          </>
+        ) : null}
+
         {children}
       </main>
     </>
