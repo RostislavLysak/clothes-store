@@ -11,7 +11,7 @@ const ProductPage = async ({ params }: ProductProps) => {
   try {
     const { slug } = params
     const product = await ShopService.getProductBySlug(slug)
-    const catalog = await ShopService.getProductsWithout(product.category, slug)
+    const catalog = await ShopService.getProductsWithoutSlug(product.category, slug)
 
     return <View product={product} catalog={catalog} />
   } catch (e) {
