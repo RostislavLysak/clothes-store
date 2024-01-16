@@ -13,13 +13,13 @@ class ShopService {
 
     return product as TProduct
   }
-  async getProductsWithout(type: string, slug: string) {
+  async getProductsWithoutSlug(type: string, slug: string) {
     const product = await RequestService.call(`/products/${type}/${slug}`, {})
 
     return product as TProduct[]
   }
 
-  async getProductsBy(type: string) {
+  async getProductsByType(type: string) {
     const products = await RequestService.call(`/products/${type}`, {})
 
     return products as TProduct[]

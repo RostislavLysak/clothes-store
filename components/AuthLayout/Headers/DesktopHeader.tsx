@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,10 +5,16 @@ import LanguageToggle from '@/components/LanguageToggle/LanguageToggle'
 import Profile from '@/components/Profile/Profile'
 import { TUser } from '@/plugins/types/requests'
 import { THeader } from '@/plugins/ui/i18n/translations'
+import DesktopNavbar from '@/components/DesktopNavbar/DesktopNavbar'
 
 type TNavlink = {
   href: string
   title?: string
+}
+
+type TNavbar = {
+  title: string
+  type: string[]
 }
 
 interface IHeaderProps {
@@ -18,9 +22,16 @@ interface IHeaderProps {
   navlinks: TNavlink[]
   profile: TUser
   show: boolean
+  navbar: TNavbar[]
 }
 
-export const DesktopHeader = ({ t, show, profile, navlinks }: IHeaderProps) => {
+export const DesktopHeader = ({
+  t,
+  show,
+  profile,
+  navlinks,
+  navbar,
+}: IHeaderProps) => {
   return (
     <header
       className={`fixed z-10 flex justify-between items-center w-full border-b p-4 px-8 backdrop-blur-md transition-all duration-500 ${
@@ -52,6 +63,7 @@ export const DesktopHeader = ({ t, show, profile, navlinks }: IHeaderProps) => {
         )}
       </nav>
       <div className='flex items-center justify-center [&>*]:mx-2'>
+        <DesktopNavbar navbar={navbar} />
         <LanguageToggle />
         <Profile t={t} profile={profile} />
       </div>

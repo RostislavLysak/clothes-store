@@ -10,7 +10,7 @@ type ViewProps = {
 
 const View = ({product, catalog}: ViewProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col pt-12">
         <SingleProduct product={product}/>
         <Catalog catalog={catalog}/>
     </div>

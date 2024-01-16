@@ -11,7 +11,7 @@ const Catalog = async ({ params }: CatalogProps) => {
   const { slug } = params
 
   try {
-    const products = await ShopService.getProductsBy(slug)
+    const products = await ShopService.getProductsByType(slug)
 
     return (
       <div className='flex flex-wrap justify-center m-auto w-full'>
